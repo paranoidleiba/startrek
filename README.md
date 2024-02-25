@@ -6,7 +6,7 @@ This is the beginning of the development of a small amateur text flight simulato
 
 <b>Last changes:</b><p>
 -improved exit from warp by timer<br>
--stopping pulse motors by timer<br>
+-stopping impulse engine by timer<br>
 -when choosing Planet Romulus, you encounter the ship "Romulan Warbird" and choose whether to fight or flee<br>
 
 <p>
