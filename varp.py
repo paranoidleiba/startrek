@@ -47,7 +47,7 @@ def dv_varp():
                     countdown_thread.join()
 
     def countdown():
-        print(f"\n{Fore.YELLOW}Waiting for one Earth minute before reaching destination...")
+        print(f"\n{Fore.YELLOW}Waiting for 30 Earth seconds before reaching destination...")
         for seconds_left in range(30, 0, -1):
             print(f"\r{seconds_left} seconds left", end="", flush=True)
             time.sleep(1)

@@ -9,7 +9,7 @@ colorama.init()
 #-----------------------------------------------------
 #this is the countdown for pulse motor operation, this function will be used below
 def countdown():
-    print(f"\n{Fore.YELLOW}Waiting for one Earth minute before reaching destination...")
+    print(f"\n{Fore.YELLOW}Waiting for 60 Earth seconds before reaching destination...")
     for seconds_left in range(60, 0, -1):
         print(f"\r{seconds_left} seconds left", end="", flush=True)
         time.sleep(1)
