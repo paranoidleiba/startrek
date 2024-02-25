@@ -1,10 +1,21 @@
 import colorama
+import time
 from colorama import Fore
 from varp import dv_varp
+import threading
 message = "Enterprise ship initialization sheet NCC1701"
 colorama.init()
 
+#-----------------------------------------------------
+#this is the countdown for pulse motor operation, this function will be used below
+def countdown():
+    print(f"\n{Fore.YELLOW}Waiting for one Earth minute before reaching destination...")
+    for seconds_left in range(60, 0, -1):
+        print(f"\r{seconds_left} seconds left", end="", flush=True)
+        time.sleep(1)
+    print(f"\n{Fore.GREEN}Stopping the impulse engine...The ship has successfully reached the destination!")
 
+#---------------------------------------------------------------
 print(Fore.GREEN + """
 __________________           __
 \_________________|)____.---'--`---.____
@@ -62,7 +73,7 @@ def activate_systems():
 
 def check_systems():
     systems = [
-        "Shunting engines",
+        "Impulse engines",
         "Warp drive",
         "Reactors",
     ]
@@ -141,6 +152,7 @@ print("")
 
 # Running functions
 
+
 def select_destination():
     print("")
     print("Select your destination:")
@@ -158,22 +170,29 @@ def select_destination():
         return None
 
     # Returning the selected destination
+    selected_destination = None
     if user_input == "a":
         print(f"Destination selected: **Alpha Centauri star system**\nAlpha Centauri star system", "A star system located at a distance of 4.37 light years from the Sun.")
+        selected_destination = "a"
         
     elif user_input == "b":
         print(f"Destination selected: **Andromeda Galaxy**\nGalaxy Andromeda Nebula", "Galaxy closest to the Milky Way, 2.5 million light years away")
+        selected_destination = "b"
         
     elif user_input == "c":
         print(f"Selected destination: **Tau Ceti star system**\nTau Ceti star system", "Star system located 11.9 light years from the Sun")
+        selected_destination = "c"
         
     elif user_input == "d":
         print(f"Destination selected: **Planet Romulus**\nHome planet of the Romulans, a hostile race. be careful")
-        
-def select_engine():
+        selected_destination = "d"
+    
+    return selected_destination
+
+def select_engine(selected_destination):
     print("")
     print("Select engine type:")
-    print("a) Conventional engine")
+    print("a) Impulse engines")
     print("b) Warp drive")
     print("")
     # Request to select engine type
@@ -185,20 +204,61 @@ def select_engine():
         return None
 
     if user_input == "a":
-        print(f"A conventional engine is selected. Let's start the flight")
-    if user_input == "b":
+        print(f"Impulse engines is selected. Let's start the flight")
+        countdown()  # Запускаем отсчет
+        print("You have arrived at your destination.")
+
+    elif user_input == "b":
+        #we fly on a varp engine for 1 minutes, start dv_varp() from file varp.py
         dv_varp()
+    if selected_destination == "d":
+        
+        def romulan_warbird():
+            print(Fore.GREEN + """
+                                      [=========]
+                           -==++""" + " .  /. . .  \\ .  " + """++==-
+                    -+""   \\   .. . .  | ..  . |  . .  .   /   ""+-
+                 /\\  +-""   `-----=====\    /=====-----'   ""-+  /\\
+                / /                      ""=""                      \\ \\
+              / /                                                     \\ \\
+             //                                                         \\\\
+            /")                                                         ("\\
+            \\o\\                                                         /o/
+             \\ )                                                       ( /") 
+            """)  
+
+        
+
 
             
-def nameste():
-    print("You have arrived at your destination")
-    return
+            print("")
+            print("You are greeted by the Romulan Warbird. This is bad news, choose, we will either shoot back or try to escape:")
+            print("a) shoot back")
+            print("b) try to escape")
 
+            print("")
+            
+            user_input = input("Enter a or b: ")
+            print("")
+            # Input validation
+            if user_input not in ("a", "b"):
+                print("Wrong choice.")
+                return None
 
+            # Returning the selected destination
+            selected_destination = None
+            if user_input == "a":
+                print(f"You have damaged an enemy ship and can continue the mission")
+            elif user_input == "b":
+                print(f"You managed to get away. Congratulations")
+
+        romulan_warbird()        
+    else:    
+        print("Choose a mission")    
 
 activate_systems()
 check_systems()
-select_destination()
-select_engine()
-nameste()
+selected_destination = select_destination()
+select_engine(selected_destination)
+# nameste()
 

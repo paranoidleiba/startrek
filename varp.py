@@ -1,5 +1,6 @@
 import random
 import time
+import threading
 from tqdm import tqdm
 from colorama import Fore, init
 
@@ -38,13 +39,19 @@ def dv_varp():
                 if i == 9:
                     print(f"\n{Fore.GREEN}Reaching Warp Speed")
                     pbar.__exit__(None, None, None)
-                    while True:
-                        user_input = input("To exit warp mode, dial \"Ext\": ")
-                        if user_input.lower() == "ext":
-                            print(f"\n{Fore.YELLOW}Exit from the Warp...")
-                            time.sleep(2)
-                            print(f"\n{Fore.GREEN}The ship has successfully left the Warp!")
-                            break
+                    # Start a new thread for the countdown
+                    countdown_thread = threading.Thread(target=countdown)
+                    countdown_thread.start()
+
+                    # Wait for the countdown to finish or user input
+                    countdown_thread.join()
+
+    def countdown():
+        print(f"\n{Fore.YELLOW}Waiting for one Earth minute before reaching destination...")
+        for seconds_left in range(30, 0, -1):
+            print(f"\r{seconds_left} seconds left", end="", flush=True)
+            time.sleep(1)
+        print(f"\n{Fore.GREEN}Exiting from Warp...The ship has successfully reached the destination!")
 
     # Запускаем имитацию
     warp_drive()
