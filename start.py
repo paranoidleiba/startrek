@@ -2,6 +2,7 @@ import colorama
 import time
 from colorama import Fore
 from varp import dv_varp
+from mission import mission
 import threading
 message = "Enterprise ship initialization sheet NCC1701"
 colorama.init()
@@ -10,7 +11,7 @@ colorama.init()
 #this is the countdown for pulse motor operation, this function will be used below
 def countdown():
     print(f"\n{Fore.YELLOW}Waiting for 60 Earth seconds before reaching destination...")
-    for seconds_left in range(60, 0, -1):
+    for seconds_left in range(6, 0, -1):
         print(f"\r{seconds_left} seconds left", end="", flush=True)
         time.sleep(1)
     print(f"\n{Fore.GREEN}Stopping the impulse engine...The ship has successfully reached the destination!")
@@ -249,12 +250,16 @@ def select_engine(selected_destination):
             selected_destination = None
             if user_input == "a":
                 print(f"You have damaged an enemy ship and can continue the mission")
+                mission()
             elif user_input == "b":
                 print(f"You managed to get away. Congratulations")
-
+                mission()
         romulan_warbird()        
     else:    
         print("Choose a mission")    
+        mission ()
+
+
 
 activate_systems()
 check_systems()
