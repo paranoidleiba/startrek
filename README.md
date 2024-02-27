@@ -1,6 +1,6 @@
 
 
-This is the beginning of the development of a small amateur text flight simulator for the <b>NCC1701</b> ship in the terminal. So far implemented: checking systems, choosing a destination, simulating flight on a warp engine, exiting warp. Further development of the project is expected in the spirit of completing various missions, meeting with enemy ships (they should be displayed as) ascii objects, and stuff like that. <b>I invite everyone to join the project.<b>
+This is the beginning of the development of a small amateur text flight simulator for the <b>NCC1701</b> ship in the terminal. So far implemented: checking systems, choosing a destination, simulating flight on a warp engine, exiting warp. Further development of the project is expected in the spirit of completing various missions, meeting with enemy ships (they should be displayed as) ascii objects, and stuff like that. <b>I invite everyone to join the project.</b>
 
 <br>The main file for launching start.py, then when flying at warp speed, varp.py is included. When you select missions, mission.py is connected
 additional modules: colorama
