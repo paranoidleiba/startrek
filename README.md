@@ -9,8 +9,7 @@ additional modules: colorama
 - added missions (module mission.py), shuttle delivery, Spock disembarkation, Spock tricorder activation
 -improved exit from warp by timer<br>
 -stopping pulse motors by timer<br>
--when choosing Planet Romulus, you encounter the ship "Romulan Warbird" and choose whether to fight or flee<br>
+-when choosing Planet Romulus, you encounter the ship "Romulan Warbird" and choose whether to fight or flee
 
-<p>
 
 
